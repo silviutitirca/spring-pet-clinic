@@ -48,4 +48,17 @@ class PetTest {
         pet.setOwner(owner);
         assertThat(pet.getOwner()).isEqualTo(owner);
     }
+
+    @Test
+    @DisplayName("Should add visit to pet")
+    void shouldAddVisit() {
+        Visit visit = new Visit();
+        visit.setDescription("Checkup");
+
+        pet.addVisit(visit);
+
+        assertThat(pet.getVisits()).hasSize(1);
+        assertThat(pet.getVisits()).contains(visit);
+        assertThat(visit.getPet()).isEqualTo(pet);
+    }
 }

@@ -136,7 +136,7 @@ Create a `Visit` class that extends `BaseEntity` and is annotated with `@Entity`
 `LocalDate date` field with `@Column(name = "visit_date", columnDefinition = "DATE")` and a String `description` field
 with `@NotEmpty` and `@Column(name = "description")`. Add a `@ManyToOne` relationship to `Pet` with
 `@JoinColumn(name = "pet_id")`. Create a default constructor that initializes the date to `LocalDate.now()`. Provide
-getter and setter methods for all properties.
+getter and setter methods for all properties. To the 'Pet' entity add a 'Visit' to the Pet entity which properly maintains the  relationship. 
 
 ---
 
