@@ -7,7 +7,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
@@ -16,6 +18,7 @@ import java.time.LocalDate;
  */
 @Getter
 @Setter
+@SuperBuilder
 @Entity
 @Table(name = "visits")
 public class Visit extends BaseEntity {

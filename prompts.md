@@ -138,6 +138,12 @@ with `@NotEmpty` and `@Column(name = "description")`. Add a `@ManyToOne` relatio
 `@JoinColumn(name = "pet_id")`. Create a default constructor that initializes the date to `LocalDate.now()`. Provide
 getter and setter methods for all properties. To the 'Pet' entity add a 'Visit' to the Pet entity which properly maintains the  relationship. 
 
+
+Inspect the package`spring-pet-clinic.model` for JPA Entities. Refactor each JPA Entity to use Lombok '@Getter' and '@Setter' annotations. 
+Complete the following updates:
+- Annotate the entities with '@Getter' and '@Setter' annotations
+- Remove all explicit getter and setter methods from each entity
+
 ---
 
 # Lesson 8: Database Migrations with Flyway

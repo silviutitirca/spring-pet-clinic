@@ -6,10 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Vet Entity Tests")
 class VetTest {
@@ -28,49 +27,26 @@ class VetTest {
     class SpecialtiesTests {
 
         @Test
-        @DisplayName("Should return sorted specialties by name")
-        void shouldReturnSortedSpecialties() {
+        @DisplayName("Should return specialties")
+        void shouldReturnSpecialties() {
             // Given
             Specialty s1 = new Specialty();
-            s1.setName("Z - " + faker.job().field());
+            s1.setName(faker.job().field());
             
             Specialty s2 = new Specialty();
-            s2.setName("A - " + faker.job().field());
-            
-            Specialty s3 = new Specialty();
-            s3.setName("M - " + faker.job().field());
+            s2.setName(faker.job().field());
 
             // When
             vet.addSpecialty(s1);
             vet.addSpecialty(s2);
-            vet.addSpecialty(s3);
 
-            List<Specialty> sorted = vet.getSpecialties();
+            Set<Specialty> specialties = vet.getSpecialties();
 
             // Then
-            assertThat(sorted).hasSize(3);
-            assertThat(sorted.get(0).getName()).isEqualTo(s2.getName());
-            assertThat(sorted.get(1).getName()).isEqualTo(s3.getName());
-            assertThat(sorted.get(2).getName()).isEqualTo(s1.getName());
+            assertThat(specialties).hasSize(2);
+            assertThat(specialties).contains(s1, s2);
         }
 
-        @Test
-        @DisplayName("Should return unmodifiable list of specialties")
-        void shouldReturnUnmodifiableList() {
-            // Given
-            Specialty s1 = new Specialty();
-            s1.setName(faker.job().field());
-            vet.addSpecialty(s1);
-
-            // When
-            List<Specialty> specialties = vet.getSpecialties();
-            
-            // Then
-            assertThrows(UnsupportedOperationException.class, () -> {
-                specialties.clear();
-            });
-        }
-        
         @Test
         @DisplayName("Should return correct number of specialties")
         void shouldReturnNrOfSpecialties() {

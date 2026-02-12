@@ -9,8 +9,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +25,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@SuperBuilder
+@NoArgsConstructor
 @Table(name = "pets")
 public class Pet extends NamedEntity {
 

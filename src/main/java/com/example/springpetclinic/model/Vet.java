@@ -7,15 +7,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,6 +18,8 @@ import java.util.Set;
  */
 @Getter
 @Setter
+@SuperBuilder
+@NoArgsConstructor
 @Entity
 @Table(name = "vets")
 public class Vet extends Person {
@@ -30,6 +27,7 @@ public class Vet extends Person {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"),
             inverseJoinColumns = @JoinColumn(name = "specialty_id"))
+    @Builder.Default
     private Set<Specialty> specialties = new HashSet<>();
 
     @JsonIgnore
@@ -42,16 +40,6 @@ public class Vet extends Person {
 
     @JsonIgnore
     protected void setSpecialtiesInternal(Set<Specialty> specialties) {
-        this.specialties = specialties;
-    }
-
-    public List<Specialty> getSpecialties() {
-        List<Specialty> sortedSpecs = new ArrayList<>(getSpecialtiesInternal());
-        PropertyComparator.sort(sortedSpecs, new MutableSortDefinition("name", true, true));
-        return Collections.unmodifiableList(sortedSpecs);
-    }
-
-    public void setSpecialties(Set<Specialty> specialties) {
         this.specialties = specialties;
     }
 

@@ -10,8 +10,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +25,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@SuperBuilder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "owners")
 public class Owner extends Person {
 
