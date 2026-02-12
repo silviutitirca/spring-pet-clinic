@@ -64,6 +64,17 @@ Create a `PetType` class that extends `NamedEntity`. Annotate it with `@Entity` 
 entity represents pet types like "Cat", "Dog", "Hamster" and requires no additional properties beyond what it inherits
 from `NamedEntity`.
 
+Create a `Specialty` class that extends `NamedEntity`. Annotate it with `@Entity` and `@Table(name = "specialty")`. This
+entity represents pet types like "Cat", "Dog", "Hamster" and requires no additional properties beyond what it inherits
+from `NamedEntity`.
+
+Create a `Vet` class that extends `Person`and is annotated with `@Entity` and `@Table(name = "vets")`. 
+Add a `Set<Specialty> specialties` field annotated with `@ManyToMany(fetch=FetchType.EAGER)` 
+and `@JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))`.
+Create internal methods `getSpecialtiesInternal()` and `setSpecialtiesInternal()` annotated with `@JsonIgnore` to manage the specialties collection.
+Create public methods `getSpecialties()`that return sorted unmodifiable list, `setSpecialties()`, 'addSpecialty()' and 'clearSpecialties()' and 'getNrOfSpecialties()'.
+Use 'Property' to sort the specialties by name in the 'getSpecialties()' method.
+
 ---
 
 # Lesson 5: Create Owner Entity with One-to-Many Relationship
