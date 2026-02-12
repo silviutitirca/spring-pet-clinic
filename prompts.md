@@ -93,6 +93,10 @@ String properties: `address` with `@Column(name = "address")` and `@NotEmpty`, `
 Add a `Set<Pet> pets` field annotated with `@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)`.
 Provide methods to manage the pets collection including `addPet()`, `getPet()` by name and id, and proper getter/setter methods.
 
+Create a `Pet` class that extends `NamedEntity` and is annotated with `@Entity` and `@Table(name = "pets")`. Add a
+`LocalDate birthDate` field with `@Column(name = "birth_date", columnDefinition = "DATE")`. Add a `@ManyToOne`
+relationship: `PetType type` with `@JoinColumn(name = "type_id")` and `CascadeType.ALL`. At this stage do not add the relationship back to `Owner` or `Visit` yet, 
+this creates a unidirectional relationship from Owner to Pet.
 ---
 
 # Lesson 6: Create Pet Entity with Many-to-One Relationships
