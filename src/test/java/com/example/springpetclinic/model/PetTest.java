@@ -38,4 +38,14 @@ class PetTest {
         assertThat(pet.getType()).isEqualTo(type);
         assertThat(pet.getType().getName()).isEqualTo("Dog");
     }
+
+    @Test
+    @DisplayName("Should set and get owner")
+    void shouldSetAndGetOwner() {
+        Owner owner = new Owner();
+        owner.setFirstName("John");
+        owner.setLastName("Doe");
+        pet.setOwner(owner);
+        assertThat(pet.getOwner()).isEqualTo(owner);
+    }
 }

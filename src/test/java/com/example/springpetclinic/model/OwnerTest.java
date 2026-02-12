@@ -34,6 +34,7 @@ class OwnerTest {
 
             assertThat(owner.getPets()).hasSize(1);
             assertThat(owner.getPets()).contains(pet);
+            assertThat(pet.getOwner()).isEqualTo(owner);
         }
 
         @Test

@@ -38,8 +38,7 @@ public class Owner extends Person {
     @Digits(fraction = 0, integer = 10)
     private String telephone;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "owner_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
     private Set<Pet> pets = new HashSet<>();
 
     @JsonIgnore
@@ -59,6 +58,7 @@ public class Owner extends Person {
         if (pet.isNew()) {
             getPetsInternal().add(pet);
         }
+        pet.setOwner(this);
     }
 
     /**

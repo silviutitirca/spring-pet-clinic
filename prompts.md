@@ -97,13 +97,18 @@ Create a `Pet` class that extends `NamedEntity` and is annotated with `@Entity` 
 `LocalDate birthDate` field with `@Column(name = "birth_date", columnDefinition = "DATE")`. Add a `@ManyToOne`
 relationship: `PetType type` with `@JoinColumn(name = "type_id")` and `CascadeType.ALL`. At this stage do not add the relationship back to `Owner` or `Visit` yet, 
 this creates a unidirectional relationship from Owner to Pet.
+
+Update the existing 'Owner' class from previous lesson to change the '@OneToMany' annotation on the 'pets' field to include 'mappedBy = "owner"' instead of '@JoinColumn(name = "owner_id")'. 
+This changes the annotation to '@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)'. Now update the 'Pet' class to add a '@ManyToOne' relationship back to 'Owner' with '@JoinColumn(name = "owner_id")'. This creates a bidirectional relationship between Owner and Pet.
+Update the 'addPet()' method in the 'Owner' class to set the owner reference in the Pet entity when adding a pet to the owner's collection. This ensures that both sides of the relationship are properly maintained.
+
 ---
 
 # Lesson 6: Create Pet Entity with Many-to-One Relationships
 
 ## Summary:
 * The `@ManyToOne` annotation defines a many-to-one relationship between entities.
-* The `@JoinColumn` annotation specifies the foreign key column name.
+* The `@JoinColumn` annotation specifies the foreign key column name
 * Entities can have multiple relationships with different entities.
 * `LocalDate` is the preferred type for date fields in modern Java applications.
 * Bidirectional relationships require careful management to maintain consistency.
